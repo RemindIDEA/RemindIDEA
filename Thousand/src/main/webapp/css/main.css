@@ -1,0 +1,924 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css");
+@import url("https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js");
+@import url("https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js");
+
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
+
+
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+}
+body {
+    min-width: 1600px;
+}
+
+#header {
+    display: block;
+    width: 100%;
+    height: 120px;
+}
+
+#top {
+    position: relative;
+    width: 1240px;
+    height: 120px;
+    margin: 0 auto;
+}
+
+.logo {
+    position: absolute;
+    left: 100px;
+    top: 20px;
+    width: 200px;
+    height: 80px;
+    background: white;
+}
+
+.logo img {
+    width: 200px;
+    height: 80px;
+}
+
+.search {
+    position: absolute;
+    left: 320px;
+    top: 40px;
+    width: 550px;
+    height: 50px;
+}
+
+.mypage {
+    position: absolute;
+    left: 900px;
+    top: 24px;
+    width: 400px;
+    height: 70px;
+}
+
+.icon1 {
+    display: inline-block;
+    margin: 0px 0px auto 20px;
+}
+
+.icon2 {
+    display: inline-block;
+    position:absolute;
+    top:5px;
+    left : 120px;
+}
+.outicon2 {
+    display: inline-block;
+   margin: 0px 0px auto 20px;
+}
+
+#nav {
+    display: block;
+    width: 100%;
+    height: 50px;
+    background-color: #FF6800;
+    opacity: 0.8;
+}
+
+#navbar {
+    width: 1240px;
+    height: 50px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.menu1 {
+    position: absolute;
+    left: 160px;
+    width: 250px;
+    height: 50px;
+}
+
+.menu2 {
+    position: absolute;
+    left: 510px;
+    width: 250px;
+    height: 50px;
+}
+
+.menu3 {
+    position: absolute;
+    left: 860px;
+    width: 250px;
+    height: 50px;
+}
+
+#content {
+    display: block;
+    width: 100%;
+    height: 1000px;
+    background-color: #f9eae0;
+}
+
+.maincontent {
+    margin: 0 auto;
+    width: 1600px;
+    height: 1000px;
+    position: relative;
+}
+
+.mainback {
+    margin: 0 auto;
+    background-color: white;
+    width: 1550px;
+    height: 1000px;
+}
+
+.category {
+    position: absolute;
+    left: 40px;
+    top: 100px;
+    width: 250px;
+    height: 550px;
+}
+
+.cate1 {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    width: 200px;
+    height: 150px;
+}
+
+.cate2 {
+    position: absolute;
+    left: 12px;
+    top: 174px;
+    width: 200px;
+    height: 150px;
+}
+
+.cate3 {
+    position: absolute;
+    left: 12px;
+    top: 336px;
+    width: 200px;
+    height: 150px;
+}
+
+.btn1 {
+    position: absolute;
+    left: 50px;
+    top: 500px;
+    width: 70px;
+    height: 40px;
+
+}
+
+.btn2 {
+    position: absolute;
+    left: 140px;
+    top: 500px;
+    width: 70px;
+    height: 40px;
+}
+
+
+.card-img-top {
+    width: 280px;
+    height: 200px;
+}
+.pic1 {
+    position: absolute;
+    left: 320px;
+    top: 70px;
+    width: 281px;
+    height: 350px;
+    overflow: hidden;
+}
+
+.pic2 {
+    position: absolute;
+    left: 660px;
+    top: 70px;
+    width: 281px;
+    height: 350px;
+    overflow: hidden;
+}
+
+.pic3 {
+    position: absolute;
+    left: 1000px;
+    top: 70px;
+    width: 281px;
+    height: 350px;
+    overflow: hidden;
+}
+
+.pic4 {
+    position: absolute;
+    left: 320px;
+    top: 470px;
+    width: 281px;
+    height: 350px;
+    overflow: hidden;
+}
+
+.pic5 {
+    position: absolute;
+    left: 660px;
+    top: 470px;
+    width: 281px;
+    height: 350px;
+    overflow: hidden;
+}
+
+.pic0 {
+    position: absolute;
+    left: 1000px;
+    top: 470px;
+    width: 281px;
+    height: 350px;
+    overflow: hidden;
+}
+
+.likecate {
+    position: absolute;
+    top: 15px;
+    left: 1080px;
+    width: 200px;
+    height: 40px;
+}
+
+.likecate span {
+    width: 95px;
+    height: 40px;
+    display: inline-block;
+}
+
+
+.paging {
+    position: absolute;
+    left: 550px;
+    top: 880px;
+    width: 680px;
+    height: 50px;
+}
+
+.paging a{
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+	font-size: 12px;
+}
+
+
+.paging a:hover:not(.active) {
+    background-color: #FF6800;
+    opacity: 0.8;
+    border-radius: 5px;
+}
+
+.quickmenu {
+    position: absolute;
+    left: 1380px;
+    width: 180px;
+    height: 900px;
+}
+
+.late1 {
+    position: absolute;
+    top: 100px;
+    left: 40px;
+    width: 100px;
+    height: 100px;
+}
+
+.late2 {
+    position: absolute;
+    top: 230px;
+    left: 40px;
+    width: 100px;
+    height: 100px;
+}
+
+.late3 {
+    position: absolute;
+    top: 360px;
+    left: 40px;
+    width: 100px;
+    height: 100px;
+}
+
+.late4 {
+    position: absolute;
+    top: 490px;
+    left: 40px;
+    width: 100px;
+    height: 100px;
+}
+
+
+#footer {
+    display: block;
+    width: 100%;
+    height: 100px;
+    background-color: #FF6800;
+    opacity: 0.8;
+}
+
+.footcontent {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.form-control {
+    width: 400px;
+}
+
+.login {
+    display: block;
+    width: 500px;
+    height: 400px;
+    margin: 20px auto auto auto;
+}
+
+.loginlogo {
+    width: 350px;
+    height: 100px;
+    margin: 60px auto auto auto;
+}
+
+.logingroup {
+    text-align: center;
+}
+
+.loginform {
+    margin: 0 auto;
+}
+
+.loginbtn {
+    width: 300px;
+    position: relative;
+    left: 100px;
+}
+
+.findgroup{
+    position: relative;
+    width: 500px;
+    height: 100px;
+}
+
+.loginjoinbtn {
+    width: 100px;
+    position: relative;
+    left: 60px;
+    top: 30px;
+    text-decoration: underline;
+}
+
+.loginfindidbtn {
+    width: 120px;
+    height: 38px;
+    position: relative;
+    left: 70px;
+    top: 30px;
+    text-decoration: underline;
+}
+
+.loginfindpwbtn {
+    width: 130px;
+    height: 38px;
+    position: relative;
+    left: 80px;
+    top: 30px;
+    text-decoration: underline;
+}
+
+.btn-primary {
+    background-color: #FF6800;
+    opacity: 0.8;
+}
+
+.btn-primary:hover {
+    background-color: #FF6800;
+    opacity: 1;
+}
+
+.btn-primary {
+    background-color: #FF6800;
+    opacity: 1;
+}
+
+.join {
+    display: block;
+    width: 500px;
+    height: 480px;
+    margin: 20px auto auto auto;
+}
+
+.joingroup {
+    text-align: center;
+    margin: 20px 0 0 auto;
+}
+
+.joinformbtn {
+    width: 300px;
+    position: relative;
+    left: 40px;
+}
+
+.joincancelbtn {
+    width: 100px;
+    position: relative;
+    left: 50px;
+}
+
+.findidgroup {
+    text-align: center;
+}
+
+.findidform {
+    margin: 0 auto;
+}
+
+.findidbtn {
+    width: 250px;
+    position: relative;
+    left: 70px;
+    top: 0px;
+}
+
+.findidcancelbtn {
+    width: 70px;
+    position: relative;
+    left: 100px;
+
+}
+
+.findid {
+    display: block;
+    width: 500px;
+    height: 300px;
+    margin: 20px auto auto auto;
+
+}
+
+
+.findpwgroup {
+    text-align: center;
+}
+
+.findpwform {
+    margin: 0 auto;
+}
+
+.findpwbtn {
+    width: 250px;
+    position: relative;
+    left: 70px;
+    top: 0px;
+}
+
+.findpwcancelbtn {
+    width: 70px;
+    position: relative;
+    left: 100px;
+
+}
+
+.findpw {
+    display: block;
+    width: 500px;
+    height: 450px;
+    margin: 20px auto auto auto;
+
+}
+
+
+
+.checkpwgroup {
+    text-align: center;
+}
+
+.checkpwform {
+    margin: 0 auto;
+}
+
+.checkpwbtn {
+    width: 250px;
+    position: relative;
+    left: 70px;
+    top: 0px;
+}
+
+.checkpwcancelbtn {
+    width: 70px;
+    position: relative;
+    left: 100px;
+
+}
+
+.checkpw {
+    display: block;
+    width: 500px;
+    height: 350px;
+    margin: 20px auto auto auto;
+
+}
+
+.updatemyinform {
+    display: block;
+    width: 500px;
+    height: 480px;
+    margin: 80px auto auto auto;
+}
+
+.updatemyinformngroup {
+    text-align: center;
+    margin: 20px 0 0 auto;
+}
+
+.updatemyinformbtn {
+    width: 300px;
+    position: relative;
+    left: 40px;
+}
+
+.updatemyinformcancelbtn {
+    width: 100px;
+    position: relative;
+    left: 50px;
+}
+
+#postcontent {
+    display: block;
+    width: 100%;
+    height: 2000px;
+    background-color: #f9eae0;
+}
+
+.postmaincontent {
+    margin: 0 auto;
+    width: 1600px;
+    height: 2000px;
+    background-color: white;
+}
+
+.postform-control {
+    width: 600px;
+}
+
+.postitle {
+    position: relative;
+    width: 700px;
+    height: 50px;
+    left: 450px;
+    top: 50px;
+    margin-bottom: 70px;
+}
+
+.postsummary {
+    position: relative;
+    width: 700px;
+    height: 50px;
+    margin: 20px auto;
+}
+
+.postcategory {
+    position: relative;
+    width: 700px;
+    height: 50px;
+    margin: 20px auto;
+}
+
+.postbtn {
+    width: 150px;
+    height: 50px;
+    background-color: #FF6800;
+    opacity: 0.8;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+}
+
+.postmainimg {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    float: right;
+    top: -200px;
+    right: 120px;
+	border-width: 2px;
+	border-color: #ff6800;
+}
+
+
+.image-preview>img{
+	width:300px;
+	height:300px;
+}
+
+#preimg>img{
+	width:100px;
+	height:100px;
+}
+.postcookitem {
+    position: relative;
+    width: 700px;
+    height: 200px;
+    margin: 20px auto;
+    position: relative;
+}
+.poststepimg {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    left: 550px;
+    top: -100px;
+    background-color: rgba(0, 0, 255, 0.556);
+
+}
+
+
+.step {
+    left: 168px;
+    top: 0px;
+    width: 500px;
+    height: 100px;
+}
+
+.plusstep {
+    left: 680px;
+    top: 25px;
+    width: 30px;
+}
+
+.minusstep {
+    left: 680px;
+    top: 55px;
+    width: 30px;
+}
+
+.cookstep1 {
+    position: relative;
+    width: 1000px;
+    height: 100px;
+    margin: 20px auto;
+    margin-left: 168px;
+
+}
+
+.cookstep2 {
+    position: relative;
+    width: 1000px;
+    height: 100px;
+    margin: 20px auto;
+    margin-left: 168px;
+	display:none;
+}
+
+.cookstep3 {
+    width: 1000px;
+    height: 100px;
+    margin: 20px auto;
+    margin-left: 168px;
+	display:none;
+}
+
+.cookstep4 {
+    width: 1000px;
+    height: 100px;
+    margin: 20px auto;
+    margin-left: 168px;
+	display:none;
+}
+
+.cookstep5 {
+    width: 1000px;
+    height: 100px;
+    margin: 20px auto;
+    margin-left: 168px;
+    display: none;
+}
+
+.cookstep6 {
+    width: 1000px;
+    height: 100px;
+    margin: 20px auto;
+    margin-left: 168px;
+    display: none;
+}
+
+.cookstep7 {
+    width: 1000px;
+    height: 100px;
+    margin: 20px auto;
+    margin-left: 168px;
+    display: none;
+}
+
+.cookstep8 {
+    width: 1000px;
+    height: 100px;
+    margin: 20px auto;
+    margin-left: 168px;
+    display: none;
+}
+
+.cookstep9 {
+    width: 1000px;
+    height: 100px;
+    margin: 20px auto;
+    margin-left: 168px;
+    display: none;
+}
+
+.cookstep10 {
+    width: 1000px;
+    height: 100px;
+    margin: 20px auto;
+    margin-left: 168px;
+    display: none;
+}
+
+.on{
+	display:block !important;
+}
+.off{
+	display:none;
+}
+
+.postinsertbtn {
+    position: relative;
+    margin: 20px auto;
+    width: 400px;
+    height: 50px;
+
+    left: 80px;
+}
+
+
+#viewcontent {
+    display: block;
+    width: 100%;
+    height: 3700px;
+    background-color: #f9eae0;
+}
+
+.viewtitlecontent {
+    margin: 0 auto;
+    width: 1000px;
+    height: 700px;
+    background-color: white;
+}
+
+.viewmainimg {
+    width: 300px;
+    height: 300px;
+    background-color: #FF6800;
+    opacity: 0.8;
+    position: relative;
+    margin: 0 auto;
+    top: 50px;
+}
+.viewmainimg img{
+	width:300px;
+	height:300px;
+}
+.viewmainimg2 img{
+	width:300px;
+	height:300px;
+}
+
+
+.viewnickname {
+    position: relative;
+    width: 500px;
+    height: 50px;
+    margin: 70px auto 0px auto;
+
+}
+
+.viewtitle {
+    position: relative;
+    width: 500px;
+    height: 50px;
+    margin: 20px auto 0px auto;
+}
+
+.viewcategory {
+    position: relative;
+    width: 700px;
+    height: 100px;
+    margin: 20px auto;
+}
+
+.viewsummary {
+    position: relative;
+    width: 500px;
+    height: 50px;
+    margin: 20px auto;
+}
+
+.viewblank {
+    margin: 0 0;
+    width: 1000px;
+    height: 3px;
+
+}
+
+.viewmaincontent {
+    display: block;
+    margin: 0 auto;
+    width: 1000px;
+    height: 2980px;
+    background-color: white;
+}
+
+.viewcookitem {
+    position: relative;
+    width: 700px;
+    height: 200px;
+    margin: 20px auto;
+    position: relative;
+}
+
+
+.viewstep {
+    position: relative;
+    width: 900px;
+    height: 210px;
+    margin: 0 0 20px 0;
+    left: -100px;
+}
+
+.viewstepbtn {
+    width: 70px;
+    height: 70px;
+    top: 50px;
+    left: 30px;
+    position: relative;
+}
+.viewtext{
+    position: relative;
+    width:500px; 
+    height: 150px; 
+    background-color: blanchedalmond;
+    left: 140px;
+    top: -60px;
+
+}
+
+.stepimg {
+    position: relative;
+    width: 190px;
+    height: 190px;
+    left: 660px;
+    top: -225px;
+    background-color: rgba(0, 0, 255, 0.556);
+
+}
+.stepimg img{
+	width:190px;
+	height:190px;
+}
+
+.viewmainimg2 {
+    width: 300px;
+    height: 300px;
+    background-color: #FF6800;
+    opacity: 0.8;
+    position: relative;
+    margin: 0 auto;
+    top: 0px;
+}
+
+.viewinsertbtn {
+    position: relative;
+    margin: 20px auto;
+    width: 600px;
+    height: 50px;
+    left: 50px;
+}
+.viewbtn {
+    width: 150px;
+    height: 50px;
+    background-color: #FF6800;
+    opacity: 0.8;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+}
+.nviewbtn {
+	position:relative;
+	left : 150px;
+    width: 150px;
+    height: 50px;
+    background-color: #FF6800;
+    opacity: 0.8;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+}
+.deletebtn {
+	position : absolute; top : 110px; left: 1000px;width: 150px;height: 50px;background-color: #FF6800;opacity: 0.8;text-align: center;color: white;font-size: 20px;
+    
+}
