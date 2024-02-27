@@ -47,7 +47,8 @@ public class ThousandDAO {
 		}
 		return totalCount;
 	}
-	// 전체글 수 조회
+	
+	// 해당아이디 글 조회
 		public int selectCount(String id) {
 			int totalCount=0;
 			String sql = "select count(*) from post where id=?";

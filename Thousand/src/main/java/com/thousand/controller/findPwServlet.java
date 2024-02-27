@@ -8,15 +8,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.thousand.dao.ThousandDAO;
 
 @WebServlet("/findPw.do")
-public class findPwServlet extends HttpServlet {
+public class FindPwServlet extends HttpServlet {
    private static final long serialVersionUID = 1L;
        
-    public findPwServlet() {
+    public FindPwServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

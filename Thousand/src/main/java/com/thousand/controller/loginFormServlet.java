@@ -14,10 +14,10 @@ import com.thousand.dao.ThousandDAO;
 import com.thousand.dto.MemberDTO;
 
 @WebServlet("/loginForm.do")
-public class loginFormServlet extends HttpServlet {
+public class LoginFormServlet extends HttpServlet {
    private static final long serialVersionUID = 1L;
        
-    public loginFormServlet() {
+    public LoginFormServlet() {
         super();
     }
 

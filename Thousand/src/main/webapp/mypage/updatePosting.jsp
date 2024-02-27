@@ -186,8 +186,7 @@
 				      }
 				    </script>
                 </div>
-                
-               
+
                 <div class="cookstep2 on">
                     <input class="step" name="content3" type="text" value="${postList.content[2]}">
                     <input class="plusstep2" type="button" value="+">

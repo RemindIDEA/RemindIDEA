@@ -15,10 +15,10 @@ import com.thousand.dao.ThousandDAO;
 import com.thousand.dto.PostDTO;
 
 @WebServlet("/recommandPost.do")
-public class recommandPostServlet extends HttpServlet {
+public class RecommandPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public recommandPostServlet() {
+	public RecommandPostServlet() {
 		super();
 	}
 

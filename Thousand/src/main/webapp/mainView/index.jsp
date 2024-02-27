@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -43,7 +43,9 @@
         <div id="navbar">
             <ul class="nav nav-pills">
                 <li class="nav-item menu1 border border-2">
-                    <a class="nav-link" href="index.do"><h3 style="color:white; text-align:center;">전체게시물</h3></a>
+                    <a class="nav-link" href="index.do">
+                    	<h3 style="color:white; text-align:center;">전체게시물</h3>
+                    </a>
                 </li>
                 <li class="nav-item menu2 border border-right-1">
                     <a class="nav-link"  href="login.do">
