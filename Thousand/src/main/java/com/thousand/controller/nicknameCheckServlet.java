@@ -13,10 +13,10 @@ import com.thousand.dao.ThousandDAO;
 
 
 @WebServlet("/nicknameCheck.do")
-public class nicknameCheckServlet extends HttpServlet {
+public class NicknameCheckServlet extends HttpServlet {
    private static final long serialVersionUID = 1L;
 
-    public nicknameCheckServlet() {
+    public NicknameCheckServlet() {
         super();
     }
 

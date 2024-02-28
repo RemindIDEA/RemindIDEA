@@ -47,7 +47,7 @@
                 <button type="button" class="btn" style="width: 120px; height: 38px; position: relative; left: 70px; top: 30px; text-decoration: underline;">
                 	<a href="findId.do">아이디찾기</a>
                 </button>
-                <button type="submit" class="btn" style="width: 130px;height: 38px;position: relative;left: 70px;top: 30px;text-decoration: underline;">
+                <button type="button" class="btn" style="width: 130px;height: 38px;position: relative;left: 70px;top: 30px;text-decoration: underline;">
                 	<a href="findPw.do">비밀번호찾기</a>
                 </button>
             </div>

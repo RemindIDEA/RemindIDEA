@@ -12,10 +12,10 @@ import javax.servlet.http.HttpSession;
 import com.thousand.dao.ThousandDAO;
 
 @WebServlet("/findId.do")
-public class findIdServlet extends HttpServlet {
+public class FindIdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public findIdServlet() {
+	public FindIdServlet() {
 		super();
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -15,10 +15,10 @@ import com.thousand.dto.CategoryDTO;
 import com.thousand.dto.PostDTO;
 
 @WebServlet("/viewPost.do")
-public class viewPostServlet extends HttpServlet {
+public class ViewPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public viewPostServlet() {
+    public ViewPostServlet() {
         super();
     }
 

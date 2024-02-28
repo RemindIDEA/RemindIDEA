@@ -13,10 +13,10 @@ import javax.servlet.http.HttpSession;
 import com.thousand.dao.ThousandDAO;
 
 @WebServlet("/deleteInform.do")
-public class deleteInformServlet extends HttpServlet {
+public class DeleteInformServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public deleteInformServlet() {
+    public DeleteInformServlet() {
         super();
     }
 

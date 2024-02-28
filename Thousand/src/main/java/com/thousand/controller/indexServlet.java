@@ -19,10 +19,10 @@ import com.thousand.dto.PostDTO;
 import util.ThousandPage;
 
 @WebServlet("/index.do")
-public class indexServlet extends HttpServlet {
+public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public indexServlet() {
+	public IndexServlet() {
 		super();
 	}
 

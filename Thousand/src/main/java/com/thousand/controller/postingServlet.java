@@ -18,10 +18,10 @@ import com.thousand.dto.CategoryDTO;
 import com.thousand.dto.PostDTO;
 
 @WebServlet("/posting.do")
-public class postingServlet extends HttpServlet {
+public class PostingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public postingServlet() {
+    public PostingServlet() {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

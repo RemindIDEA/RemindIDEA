@@ -1,7 +1,6 @@
 package com.thousand.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.thousand.dao.ThousandDAO;
-import com.thousand.dao.ThousandDAO.RecentlyViewList;
 import com.thousand.dto.PostDTO;
 
 import util.ThousandPage;
@@ -23,10 +21,10 @@ import util.ThousandPage;
 
 
 @WebServlet("/main.do")
-public class mainServlet extends HttpServlet {
+public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public mainServlet() {
+	public MainServlet() {
 		super();
 	}
 

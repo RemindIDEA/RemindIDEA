@@ -14,10 +14,10 @@ import com.thousand.dao.ThousandDAO;
 import com.thousand.dto.MemberDTO;
 
 @WebServlet("/updateMyInform.do")
-public class updateMyInformServlet extends HttpServlet {
+public class UpdateMyInformServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public updateMyInformServlet() {
+	public UpdateMyInformServlet() {
 		super();
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,7 +29,6 @@ public class updateMyInformServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 		String id = (String)session.getAttribute("loginUser");
-		String pw = request.getParameter("pw");
 		if(id.equals((String)session.getAttribute("loginUser"))) {
 			ThousandDAO tDao=ThousandDAO.getInstance();
 			MemberDTO mDto = new MemberDTO();
@@ -48,7 +47,6 @@ public class updateMyInformServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		HttpSession session=request.getSession();
 		String id=request.getParameter("id");
 		String pw=request.getParameter("pw");
 		String email = request.getParameter("email");
