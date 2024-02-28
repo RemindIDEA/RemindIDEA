@@ -10,17 +10,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.thousand.dao.ThousandDAO;
-import com.thousand.dto.CategoryDTO;
-import com.thousand.dto.PostDTO;
+import com.thousand.service.CategoryService;
+import com.thousand.service.CategoryServiceImpl;
+import com.thousand.service.PostService;
+import com.thousand.service.PostServiceImpl;
 
 @WebServlet("/viewPost.do")
 public class ViewPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public ViewPostServlet() {
-        super();
-    }
+
+	public ViewPostServlet() {
+		super();
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession(); //session
@@ -29,37 +30,25 @@ public class ViewPostServlet extends HttpServlet {
 			RequestDispatcher dispatcher=request.getRequestDispatcher("index.do");
 			dispatcher.forward(request, response);
 		}else {
-			//post(글쓰기 후) 자신이 작성한 글 보여주기 위한 부분---------------------------------------------------
-			int pno = -1;
-			pno	=Integer.parseInt(request.getParameter("pno"));
+			PostService postService = PostServiceImpl.getInstance(); //post관련 서비스 객체
+			CategoryService categoryService = CategoryServiceImpl.getInstance();	//카테고리관련 서비스객체
+			//post상세보기
+			//아이디 확인해서 자신인지 아닌지에 따라 화면 보여주기 
+			int pno	= Integer.parseInt(request.getParameter("pno"));
 			String id =(String)session.getAttribute("loginUser");
-			
-			if(pno != -1) {	//받아온 글번호가 있을경우
-				ThousandDAO tDao = ThousandDAO.getInstance();		//dao 인스턴스 받아오기
-				PostDTO pDto = new PostDTO();						//글 내용 받아올 객체 생성
-				//pno로 해당 글 받아와서 정보 저장하고 페이지 넘어가기
-				pDto = tDao.selectOnePost(pno);						//글번호로 해당 글 정보 가져오기
-				tDao.plusReadCount(pno);							//글번호로 조회수 올리기
-				if(id.equals(pDto.getId())) {
-					CategoryDTO cDto = new CategoryDTO();
-					cDto = tDao.selectCategory(pDto.getCategorycode());
-					request.setAttribute("postList", pDto);					//받아온 객체 정보 request에 저장
-					request.setAttribute("category", cDto);
-					RequestDispatcher dispatcher = request.getRequestDispatcher("mainView/viewPost.jsp");		//viewpost로 넘어가기
-					dispatcher.forward(request, response);
-				}else {
-					CategoryDTO cDto = new CategoryDTO();
-					cDto = tDao.selectCategory(pDto.getCategorycode());
-					request.setAttribute("postList", pDto);					//받아온 객체 정보 request에 저장
-					request.setAttribute("category", cDto);
-					RequestDispatcher dispatcher = request.getRequestDispatcher("mainView/nonviewPost.jsp");		//viewpost로 넘어가기
-					dispatcher.forward(request, response);
-				}
-			}else {	//받아온 글번호가 없을경우
-				RequestDispatcher dispatcher = request.getRequestDispatcher("main.do");		//main으로 넘어가기
+			//글 작성자와 로그인된 아이디가 같은지 확인
+			boolean checkPnoId = postService.checkPnoId(pno, id);
+			//글번호로 상세보기할 글 가져와서 저장
+			request.setAttribute("postList", postService.selectOnePost(pno));
+			//글번호로 상세보기 할 글의 카테고리 정보 가져오기
+			request.setAttribute("category", categoryService.selectCategory(postService.selectOnePost(pno).getCategorycode()));
+			if(checkPnoId==true) {	//작성자와 아이디가 일치할 경우
+				RequestDispatcher dispatcher = request.getRequestDispatcher("mainView/viewPost.jsp");		//viewpost로 넘어가기
+				dispatcher.forward(request, response);
+			}else {	//작성자와 아이디가 일치하지 않을 경우
+				RequestDispatcher dispatcher = request.getRequestDispatcher("mainView/nonviewPost.jsp");		//viewpost로 넘어가기
 				dispatcher.forward(request, response);
 			}
-			//post(글쓰기 후) 자신이 작성한 글 보여주기 위한 부분.end------------------------------------------------
 		}
 	}
 
