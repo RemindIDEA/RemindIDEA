@@ -1,6 +1,4 @@
-<<<<<<< HEAD
 # teamproject
-=======
 ### Hi there 👋
 welcome my portfolio page
 
@@ -18,4 +16,3 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
->>>>>>> 87df03fcbe7d93df2fa3862f2a758d0f023fcfde
