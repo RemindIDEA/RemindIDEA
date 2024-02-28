@@ -14,7 +14,8 @@ public interface PostRepository {
 	public PostDTO selectOnePost(int pno);
 	//상세글 불러올 때 readcount + 해주기
 	public void plusReadCount(int pno);
-	
+	//해당 글 작성자와 로그인된 아이디 정보 일치확인
+	public boolean checkPnoId(int pno,String id);
 	//전체 글 수 확인
 	public int selectCount();
 	//해당 아이디 글 수 확인
