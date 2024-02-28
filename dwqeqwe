@@ -1,0 +1,45 @@
+[33mcommit 58c13234cb59a2845155e7af32ea6ee067e8fead[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mDay2[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Merge: 8d6d1ba 30bc498
+Author: SangGI <151593484+RemindIDEA@users.noreply.github.com>
+Date:   Wed Feb 28 15:01:22 2024 +0900
+
+    Merge pull request #1 from RemindIDEA/Day1
+    
+    Day1
+
+[33mcommit 30bc49862421135439a652992f5fbf9122b21d04[m
+Author: cyh <cyh@amass.co.kr>
+Date:   Wed Feb 28 14:56:16 2024 +0900
+
+    add git ignore and remove class files
+
+[33mcommit 7beaae3efc6cb9c2e6622f9a779bd869751b3feb[m[33m ([m[1;31morigin/Day1[m[33m, [m[1;32mDay1[m[33m)[m
+Author: hsk <tkdrl319@naver.com>
+Date:   Tue Feb 27 18:06:13 2024 +0900
+
+    Feat: add repository, service for mvc
+
+[33mcommit 8d6d1ba56be54d084f021e9b3a3ac517c6da87a6[m
+Merge: 5d43ab3 87df03f
+Author: hsk <tkdrl319@naver.com>
+Date:   Mon Feb 26 16:33:38 2024 +0900
+
+    이전 프로젝트 올리기
+
+[33mcommit 87df03fcbe7d93df2fa3862f2a758d0f023fcfde[m
+Author: SangGI <151593484+RemindIDEA@users.noreply.github.com>
+Date:   Mon Feb 26 16:18:15 2024 +0900
+
+    Update README.md
+
+[33mcommit 5d43ab3b90dbeb055bba79dba95383f21aea201c[m
+Author: hsk <tkdrl319@naver.com>
+Date:   Mon Feb 26 14:20:30 2024 +0900
+
+    이전 프로젝트 커밋
+
+[33mcommit 0bced20227091d33f62fba8694b0c7d01600afd8[m
+Author: SangGI <151593484+RemindIDEA@users.noreply.github.com>
+Date:   Mon Feb 26 10:18:11 2024 +0900
+
+    Initial commit
