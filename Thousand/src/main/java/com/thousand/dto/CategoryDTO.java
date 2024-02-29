@@ -5,7 +5,14 @@ public class CategoryDTO {
 	private String recipe;				//카테고리 분류 - 레시피별
 	private String local;				//카테고리 분류 - 지역별
 	private String item;				//카테고리 분류 - 재료별
+	public CategoryDTO() {}
 	
+	public CategoryDTO(int categorycode, String recipe, String local, String item) {
+		this.categorycode = categorycode;
+		this.recipe = recipe;
+		this.local = local;
+		this.item = item;
+	}
 	//getter and setter
 	public int getCategorycode() {
 		return categorycode;

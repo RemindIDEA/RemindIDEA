@@ -14,16 +14,25 @@ public class PostDTO {
 	private String[] produceImg;      //본문내용 2~11까지의 사진
 	private Timestamp postdate;      //게시글 작성 날짜
 	private int rnum;
-
+	public PostDTO(){
+		content = new String[11];
+		produceImg = new String[10];
+	}
+	public PostDTO(String id, String title, String summary, int categorycode, String mainimg, String[] content,
+			String[] produceImg) {
+		this.id = id;
+		this.title = title;
+		this.summary = summary;
+		this.categorycode = categorycode;
+		this.mainimg = mainimg;
+		this.content = content;
+		this.produceImg = produceImg;
+	}
 	public int getRnum() {
 		return rnum;
 	}
 	public void setRnum(int rnum) {
 		this.rnum = rnum;
-	}
-	public PostDTO(){
-		content = new String[11];
-		produceImg = new String[10];
 	}
 	public String[] getContent() {
 		return content;
