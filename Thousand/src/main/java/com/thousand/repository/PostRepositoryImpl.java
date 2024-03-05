@@ -12,6 +12,9 @@ import com.thousand.dto.PostDTO;
 import util.DBManager;
 
 public class PostRepositoryImpl implements PostRepository{
+	
+	
+	
 	private PostRepositoryImpl() {}
 	private static PostRepositoryImpl instance = new PostRepositoryImpl();
 	public static PostRepositoryImpl getInstance() {
@@ -305,10 +308,49 @@ public class PostRepositoryImpl implements PostRepository{
 			DBManager.close(conn, pstmt);
 		}
 	}
-
+	//게시글 수정하기.
 	@Override
 	public void updatePost(PostDTO pDTO) {
-		// TODO Auto-generated method stub
+		// 받아온 데이터 게시글 수정하기
+		String sql = "update post set title=?, summary=?, categorycode=?, mainimg=?, "
+				+ "content1=?, content2=?, content3=?, content4=?, content5=?, content6=?, "
+				+ "content7=?, content8=?, content9=?, content10=?, content11=?, "
+				+ "produceimg2 =?, produceimg3 =?, produceimg4 =?, produceimg5 =?, produceimg6 =?, "
+				+ "produceimg7 =?, produceimg8 =?, produceimg9 =?, produceimg10 =?, produceimg11 =? " + "where pno=?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, pDTO.getTitle());
+			pstmt.setString(2, pDTO.getSummary());
+			pstmt.setInt(3, pDTO.getCategorycode());
+			pstmt.setString(4, pDTO.getMainimg());
+			for (int i = 0; i < 11; i++) {
+				// 컨텐츠 내용이 존재할 시에는 정보 넣고 아니면 null값 넣기
+				if (pDTO.getContent()[i] != null) {
+					pstmt.setString(i + 5, pDTO.getContent()[i]);
+				} else {
+					pstmt.setString(i + 5, null);
+				}
+				if (i == 10) {// index가 11일때 밑에 img코드는 생략
+					break;
+				}
+				// 사진 내용이 존재할 시에는 정보 넣고 아니면 null값 넣기
+				if (pDTO.getProduceImg()[i] != null) {
+					pstmt.setString(i + 16, pDTO.getProduceImg()[i]);
+				} else {
+					pstmt.setString(i + 16, null);
+				}
+			}
+			pstmt.setInt(26, pDTO.getPno());
+			pstmt.executeUpdate();
+			// 입력한 후에 바로 입력한 카테고리 코드 확인해서 가져오기
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt);
+		}
 
 	}
 

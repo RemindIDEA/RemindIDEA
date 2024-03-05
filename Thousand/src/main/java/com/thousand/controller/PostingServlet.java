@@ -83,14 +83,12 @@ public class PostingServlet extends HttpServlet {
 		}
 		/* postDto에 넣을 정보 받기-------------------------*/
 		//사용할 서비스 instance 가져오기
-		CategoryService categoryService = CategoryServiceImpl.getInstance();
 		PostService postService = PostServiceImpl.getInstance(); 
-		//카테고리 먼저 입력하고 카테고리 코드 받아오기
-		int categorycode = categoryService.insertCategory(recipe, local, item);
-		//위 불러온 정보 전체 저장 
-		PostDTO postDto = new PostDTO(id,title,summary,categorycode,mainimg,content,produceImg);
-		//위 정보 넣어주고 해당 글번호 가져오기
-		int pno = postService.insertPost(postDto);
+		
+		//위 불러온 정보 전체 저장 (카테고리코는 추가하기 전이므로 0으로 임시저장)
+		PostDTO postDto = new PostDTO(id,title,summary,0,mainimg,content,produceImg);
+		//위 정보 넣어주고 해당 글번호 가져오기(카테고리 정보도 넘겨줘서 입력하고 코드 같이 입력하기.
+		int pno = postService.insertPost(postDto,recipe,local,item);
 		
 		//pno가 0이면 게시글 못찾았음 -> 글쓰기 실패
 		if(pno!= 0) {		//작성한 글 게시글번호를 가져오면 view로 넘겨주기
