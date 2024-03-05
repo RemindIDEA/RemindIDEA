@@ -20,10 +20,14 @@ public class CategoryServiceImpl implements CategoryService {
 		cDto = categoryRepository.selectCategory(categorycode);
 		return cDto;
 	}
-
+	//글내용 받아서 입력해주고 categorycode 리턴(postDto에 저장하기위해)
 	@Override
-	public void insertCategory(CategoryDTO cDTO) {
-		// TODO Auto-generated method stub
+	public int insertCategory(String recipe,String local, String item) {
+		//글등록
+		categoryRepository.insertCategory(recipe, local, item);
+		//등록한 글 카테고리코드 받기
+		int categorycode = choiceCategoryCode();
+		return categorycode;
 	}
 
 	@Override
@@ -38,8 +42,9 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public int choiceCategoryCode() {
-		// TODO Auto-generated method stub
-		return 0;
+		//방금 등록했던 카테고리 받아오기
+		int categorycode = categoryRepository.choiceCategoryCode();
+		return categorycode;
 	}
 
 }

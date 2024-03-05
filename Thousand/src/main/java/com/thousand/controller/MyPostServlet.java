@@ -1,9 +1,6 @@
 package com.thousand.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,10 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.thousand.dao.ThousandDAO;
-import com.thousand.dto.PostDTO;
-
-import util.ThousandPage;
+import com.thousand.dto.SearchDTO;
+import com.thousand.service.PostService;
+import com.thousand.service.PostServiceImpl;
 
 @WebServlet("/myPost.do")
 public class MyPostServlet extends HttpServlet {
@@ -33,52 +29,18 @@ public class MyPostServlet extends HttpServlet {
 			RequestDispatcher dispatcher=request.getRequestDispatcher("index.do");
 			dispatcher.forward(request, response);
 		}
-		
-		ThousandDAO tDao = ThousandDAO.getInstance();
-		//디버깅
+		//id 받아오기
 		String id = (String)session.getAttribute("loginUser");
-		/* 페이징 처리 *****************************************************/
-		Map<String, Object> map = new HashMap<String, Object>();
-
-
-		int totalCount = tDao.selectCount(id);  // 게시물 개수
-
-		/* 페이지 처리 start */
-
-		int pageSize = 6; // 페이지당 글수
-		int blockPage = 5; // 목록 아랫쪽  페이지번호 수
-
-		// 현재 페이지 확인
-		int pageNum = 1;  // 기본값
-		String pageTemp = request.getParameter("pageNum");
-		if (pageTemp != null && !pageTemp.equals(""))
-			pageNum = Integer.parseInt(pageTemp); // 요청받은 페이지로 수정
-
-		// 목록에 출력할 게시물 범위 계산
-		int start = (pageNum - 1) * pageSize + 1;  // 첫 게시물 번호
-		int end = pageNum * pageSize; // 마지막 게시물 번호
-		map.put("start", start);
-		map.put("end", end);
-		/* 페이지 처리 end */
-
-		// 뷰에 전달할 매개변수 추가
-		String pagingString="";
-
-
-		pagingString = ThousandPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "/Thousand/myPost.do?");  // 바로가기 영역 HTML 문자열
-
-		map.put("pagingString", pagingString);
-		map.put("totalCount", totalCount);
-		map.put("pageSize", pageSize);
-		map.put("pageNum", pageNum);
-
-		// 전달할 데이터를 request 영역에 저장 후 포워드        
-		request.setAttribute("map", map);
-
-
-		/***********페이징 처리 끝 ********************************************/
-		List<PostDTO> myPostList =tDao.selectMyPost(id,map);
-		request.setAttribute("postList", myPostList);
+		//서비스 객체 생성
+		PostService postService = PostServiceImpl.getInstance();
+		//받아온 검색관련 변수들을 담아주어 보내주기
+		SearchDTO sDto = new SearchDTO(request.getParameter("searchField"),
+				request.getParameter("searchWord"),
+				request.getParameter("pageNum"));
+		//페이징 처리위해 jsp로 보내주기
+		request.setAttribute("map", postService.paging(id,sDto));
+		//받아온 리스트 내 게시물 다시 jsp로 보내주기
+		request.setAttribute("postList", postService.selectMyPost(id,postService.paging(id,sDto))); // view 에 전달할 데이터
 		RequestDispatcher dispatcher = request.getRequestDispatcher("mypage/myPost.jsp");
 		dispatcher.forward(request, response);
 	}

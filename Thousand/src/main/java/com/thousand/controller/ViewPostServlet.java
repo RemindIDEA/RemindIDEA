@@ -46,6 +46,7 @@ public class ViewPostServlet extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("mainView/viewPost.jsp");		//viewpost로 넘어가기
 				dispatcher.forward(request, response);
 			}else {	//작성자와 아이디가 일치하지 않을 경우
+				//버튼 없는 페이지로 이동
 				RequestDispatcher dispatcher = request.getRequestDispatcher("mainView/nonviewPost.jsp");		//viewpost로 넘어가기
 				dispatcher.forward(request, response);
 			}
