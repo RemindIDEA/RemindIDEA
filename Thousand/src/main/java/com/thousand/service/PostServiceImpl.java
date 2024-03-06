@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.thousand.dto.CategoryDTO;
 import com.thousand.dto.PostDTO;
 import com.thousand.dto.SearchDTO;
 import com.thousand.repository.PostRepository;
@@ -145,10 +146,11 @@ public class PostServiceImpl implements PostService {
 		result = postRepo.checkPnoId(pno,id);
 		return result;
 	}
+	//입력받은 정보로 새글 입력하기.
 	@Override
-	public int insertPost(PostDTO pDTO,String recipe,String local, String item) {
+	public int insertPost(PostDTO pDTO,CategoryDTO cDTO) {
 		//받아온 카테고리 정보 먼저 입력
-		int categorycode = categoryService.insertCategory(recipe, local, item);
+		int categorycode = categoryService.insertCategory(cDTO.getRecipe(),cDTO.getLocal(),cDTO.getItem());
 		//카테고리 정보 넣어주기
 		pDTO.setCategorycode(categorycode);
 		//받아온 정보로 새로운 글 입력하기
@@ -166,7 +168,8 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public void deletePost(PostDTO pDTO) {
-
+	public void deletePost(int pno) {
+		//받은 글번호로 해당 글 삭제
+		postRepo.deletePost(pno);
 	}
 }

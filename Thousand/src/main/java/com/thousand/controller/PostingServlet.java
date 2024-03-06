@@ -13,9 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.thousand.dto.CategoryDTO;
 import com.thousand.dto.PostDTO;
-import com.thousand.service.CategoryService;
-import com.thousand.service.CategoryServiceImpl;
 import com.thousand.service.PostService;
 import com.thousand.service.PostServiceImpl;
 
@@ -87,8 +86,12 @@ public class PostingServlet extends HttpServlet {
 		
 		//위 불러온 정보 전체 저장 (카테고리코는 추가하기 전이므로 0으로 임시저장)
 		PostDTO postDto = new PostDTO(id,title,summary,0,mainimg,content,produceImg);
+		CategoryDTO categoryDTO = new CategoryDTO();
+		categoryDTO.setRecipe(recipe);
+		categoryDTO.setLocal(local);
+		categoryDTO.setItem(item);
 		//위 정보 넣어주고 해당 글번호 가져오기(카테고리 정보도 넘겨줘서 입력하고 코드 같이 입력하기.
-		int pno = postService.insertPost(postDto,recipe,local,item);
+		int pno = postService.insertPost(postDto,categoryDTO);
 		
 		//pno가 0이면 게시글 못찾았음 -> 글쓰기 실패
 		if(pno!= 0) {		//작성한 글 게시글번호를 가져오면 view로 넘겨주기

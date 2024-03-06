@@ -32,12 +32,7 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 	//기존 카테고리 내용 수정하기.
 	@Override
-	public void updateCategory(int categorycode, String recipe, String local, String item) {
-		CategoryDTO cDTO = new CategoryDTO();
-		cDTO.setCategorycode(categorycode);
-		cDTO.setRecipe(recipe);
-		cDTO.setLocal(local);
-		cDTO.setItem(item);
+	public void updateCategory(CategoryDTO cDTO) {
 		//받아온 정보로 내용 수정하기.
 		categoryRepository.updateCategory(cDTO);
 	}

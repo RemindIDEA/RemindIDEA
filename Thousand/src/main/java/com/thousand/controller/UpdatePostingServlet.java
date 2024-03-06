@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.thousand.dto.CategoryDTO;
 import com.thousand.dto.PostDTO;
 import com.thousand.service.CategoryService;
 import com.thousand.service.CategoryServiceImpl;
@@ -98,9 +99,14 @@ public class UpdatePostingServlet extends HttpServlet {
 		//서비스 인스턴스 가져오기
 		PostService postService = PostServiceImpl.getInstance();
 		CategoryService categoryService = CategoryServiceImpl.getInstance();
-
+		CategoryDTO categoryDTO = new CategoryDTO();
+		
+		categoryDTO.setCategorycode(postService.selectOnePost(pno).getCategorycode());
+		categoryDTO.setRecipe(recipe);
+		categoryDTO.setLocal(local);
+		categoryDTO.setItem(item);
 		//업데이트 된 카테고리 내용 넣어주기.
-		categoryService.updateCategory(postService.selectOnePost(pno).getCategorycode(),recipe,local,item);
+		categoryService.updateCategory(categoryDTO);
 		//불러온 정보 전체 저장 
 		postService.updatePost(pno,new PostDTO(id,title,summary,postService.selectOnePost(pno).getCategorycode(),mainimg,content,produceImg));		//정보가 저장된 객체를 넘겨서 insert해주기
 
