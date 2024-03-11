@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.thousand.dao.ThousandDAO;
 import com.thousand.dto.MemberDTO;
+import com.thousand.service.LoginService;
+import com.thousand.service.LoginServiceImpl;
 
 @WebServlet("/loginForm.do")
 public class LoginFormServlet extends HttpServlet {
@@ -42,16 +43,16 @@ public class LoginFormServlet extends HttpServlet {
       String email=request.getParameter("email");
       String nickname=request.getParameter("nickname");
       
-      // 적은 거 저장
+      //받아온 정보 저장.
       MemberDTO mDto=new MemberDTO();
       mDto.setId(id);
       mDto.setPw(pw);
       mDto.setEmail(email);
       mDto.setNickname(nickname);
       
-      // DAO 인스턴스 생성
-      ThousandDAO tDao=ThousandDAO.getInstance();
-      int result=tDao.createMember(mDto); // 영향을 받은 행의 수. insert하면 1행이 추가되므로 1리턴
+      //서비스객체 인스턴스 생성
+      LoginService loginService = LoginServiceImpl.getInstance();
+      int result=loginService.createMember(mDto); // 영향을 받은 행의 수. insert하면 1행이 추가되므로 1리턴
       
       if(result==1) {
     	  request.setAttribute("message", "회원가입이 완료되었습니다.");

@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.thousand.dao.ThousandDAO;
+import com.thousand.service.LoginService;
+import com.thousand.service.LoginServiceImpl;
 
 @WebServlet("/idcheck.do")
 public class IdcheckServlet extends HttpServlet {
@@ -28,12 +29,12 @@ public class IdcheckServlet extends HttpServlet {
 			RequestDispatcher dispatcher=request.getRequestDispatcher("main.do");
 			dispatcher.forward(request, response);
 		}else {
+			//입력받은 아이디
 			String id = request.getParameter("id");
-			
-			ThousandDAO tDao=ThousandDAO.getInstance();
-			int result=tDao.confirmId(id);
+			LoginService loginService = LoginServiceImpl.getInstance();
+			//id와 중복여부 결과값 전달.
 			request.setAttribute("id", id);
-			request.setAttribute("result", result);
+			request.setAttribute("result", loginService.confirmId(id));
 			
 			RequestDispatcher dispatcher=request.getRequestDispatcher("mypage/checkId.jsp");
 			dispatcher.forward(request, response);
