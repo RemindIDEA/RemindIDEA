@@ -3,6 +3,7 @@ package com.thousand.service;
 import java.util.List;
 import java.util.Map;
 
+import com.thousand.dto.CategoryDTO;
 import com.thousand.dto.PostDTO;
 import com.thousand.dto.SearchDTO;
 
@@ -20,14 +21,10 @@ public interface PostService {
 	public PostDTO selectOnePost(int pno);
 	//상세보기시 글 작성자와 해당 아이디가 일치하는지 체크
 	public boolean checkPnoId(int pno,String id);
-	//전체 글 수 확인
-	public int selectCount();
-	//해당 아이디 글 수 확인
-	public int selectCount(String id);
 	//글 작성
-	public int insertPost(PostDTO pDTO);
+	public int insertPost(PostDTO pDTO,CategoryDTO cDTO);
 	// 글 수정
-	public void updatePost(PostDTO pDTO);
+	public void updatePost(int pno, PostDTO pDTO);
 	// 글 삭제
-	public void deletePost(PostDTO pDTO);
+	public void deletePost(int pno);
 }

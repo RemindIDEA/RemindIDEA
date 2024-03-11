@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.thousand.dao.ThousandDAO;
+import com.thousand.service.PostService;
+import com.thousand.service.PostServiceImpl;
 
 @WebServlet("/postDelete.do")
 public class PostDeleteServlet extends HttpServlet {
@@ -31,13 +32,11 @@ public class PostDeleteServlet extends HttpServlet {
 			RequestDispatcher dispatcher=request.getRequestDispatcher("index.do");
 			dispatcher.forward(request, response);
 		}else {
-			//pno를 통해 글정보 삭제하기
-			int pno = -1;
-			pno = Integer.parseInt(request.getParameter("pno"));
-			if(pno != -1) {
-				ThousandDAO tDao = ThousandDAO.getInstance();
+			if(request.getParameter("pno")!= null) {
+				PostService postService = PostServiceImpl.getInstance();
+				int pno = Integer.parseInt(request.getParameter("pno"));
 				//pno로 글 삭제하기
-				tDao.deletePost(pno);
+				postService.deletePost(pno);
 				//삭제후 메인페이지로 보내주기
 				RequestDispatcher dispatcher = request.getRequestDispatcher("main.do");		
 				dispatcher.forward(request, response);

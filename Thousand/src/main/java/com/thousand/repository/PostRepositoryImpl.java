@@ -7,11 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.thousand.consts.QueryCollect;
 import com.thousand.dto.PostDTO;
 
 import util.DBManager;
 
 public class PostRepositoryImpl implements PostRepository{
+	
+	
+	
 	private PostRepositoryImpl() {}
 	private static PostRepositoryImpl instance = new PostRepositoryImpl();
 	public static PostRepositoryImpl getInstance() {
@@ -20,19 +24,12 @@ public class PostRepositoryImpl implements PostRepository{
 	//전체 글 가져오기(검색 필드 및 키워드 포함인 경우도)
 	@Override
 	public List<PostDTO> selectPostsAll(Map<String, Object> map) {
-		String sql = "select *  from "
-				+" ( "
-				+" select t.*, rownum rnum from( "
-				+"	select * from post ";
+		String sql = QueryCollect.SELECT_POSTS_ALL1;
 		if(map.get("searchWord") != null) {
 			sql += "where " + map.get("searchField")
 			+ " like '%" + map.get("searchWord") + "%' ";
 		}
-		sql += "		order by pno desc "
-				+" 		) t"
-				+"   where rownum <= ?) "
-				+"where rnum >=?";
-
+		sql += QueryCollect.SELECT_POSTS_ALL2;
 		String[] content = new String[11];
 		String[] produceImg = new String[10];
 		List<PostDTO> list = new ArrayList<PostDTO>();
@@ -78,10 +75,6 @@ public class PostRepositoryImpl implements PostRepository{
 	@Override
 	public List<PostDTO> selectMyPost(String id, Map<String, Object> map) {
 		// 작성자 id 값으로 작성한 글 불러오기, post 테이블 member 테이블 조인해서 작성자 닉네임 값 불러오기
-		String sql = "select *  from "+
-				"( select t.*, rownum rnum from( "+ 
-				" select * from post where id=? order by pno desc ) t where rownum <= ?) " + 
-				" where rnum >=?";
 		// 조회된 post 넣어줄 배열생성
 		String[] content = new String[11];
 		String[] produceImg = new String[10];
@@ -91,7 +84,7 @@ public class PostRepositoryImpl implements PostRepository{
 		ResultSet rs = null;
 		try {
 			conn = DBManager.getConnection();
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(QueryCollect.SELECT_MY_POST);
 			pstmt.setString(1, id);
 			pstmt.setString(2, map.get("end").toString());
 			pstmt.setString(3, map.get("start").toString());
@@ -131,8 +124,6 @@ public class PostRepositoryImpl implements PostRepository{
 	public PostDTO selectOnePost(int pno) {
 		// 리턴 해줄 dto 생성
 		PostDTO pdto = new PostDTO();
-		// 글번호로 글 가져올 쿼리문
-		String sql = "select * from post where pno=?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -142,7 +133,7 @@ public class PostRepositoryImpl implements PostRepository{
 		try {
 			// db 연결 밑 ?값 셋팅
 			conn = DBManager.getConnection();
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(QueryCollect.SELECT_ONE_POST);
 			pstmt.setInt(1, pno);
 			rs = pstmt.executeQuery();
 			if (rs.next()) { // 받아온 자료가 있을 시
@@ -176,12 +167,11 @@ public class PostRepositoryImpl implements PostRepository{
 	//글 조회수 올리기
 	@Override
 	public void plusReadCount(int pno) {
-		String sql = "update post set readcount=readcount+1 where pno=?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
 			conn = DBManager.getConnection();
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(QueryCollect.PLUS_READCOUNT);
 			pstmt.setInt(1, pno);
 			// 조회수 +1 기록
 			pstmt.executeUpdate();
@@ -195,13 +185,12 @@ public class PostRepositoryImpl implements PostRepository{
 	@Override
 	public boolean checkPnoId(int pno, String id) {
 		boolean result = false;
-		String sql = "select * from post where pno=? and id=?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			conn = DBManager.getConnection();
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(QueryCollect.CHECK_PNO_ID);
 			pstmt.setInt(1,pno);
 			pstmt.setString(2, id);
 			rs = pstmt.executeQuery();
@@ -220,13 +209,12 @@ public class PostRepositoryImpl implements PostRepository{
 	@Override
 	public int selectCount() {
 		int totalCount=0;
-		String sql = "select count(*) from post";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			conn = DBManager.getConnection();
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(QueryCollect.SELECT_COUNT);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				totalCount = rs.getInt(1);
@@ -242,13 +230,12 @@ public class PostRepositoryImpl implements PostRepository{
 	@Override
 	public int selectCount(String id) {
 		int totalCount=0;
-		String sql = "select count(*) from post where id=?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			conn = DBManager.getConnection();
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(QueryCollect.SELECT_COUNT_ID);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -265,16 +252,11 @@ public class PostRepositoryImpl implements PostRepository{
 	@Override
 	public void insertPost(PostDTO pDTO) {
 		// 받아온 데이터 게시글 추가하기
-		String sql = "insert into post(pno, id, title,summary,categorycode,mainimg"
-				+ ",readcount,content1,content2,content3,content4,content5,content6,content7,"
-				+ " content8, content9, content10, content11, produceimg2, produceimg3, produceimg4"
-				+ ", produceimg5, produceimg6, produceimg7, produceimg8, produceimg9, produceimg10, produceimg11)"
-				+ " values(post_seq.nextval,?,?,?,?,?,0,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
 			conn = DBManager.getConnection();
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(QueryCollect.INSERT_POST);
 			pstmt.setString(1, pDTO.getId());
 			pstmt.setString(2, pDTO.getTitle());
 			pstmt.setString(3, pDTO.getSummary());
@@ -305,29 +287,73 @@ public class PostRepositoryImpl implements PostRepository{
 			DBManager.close(conn, pstmt);
 		}
 	}
-
+	//게시글 수정하기.
 	@Override
 	public void updatePost(PostDTO pDTO) {
-		// TODO Auto-generated method stub
+		// 받아온 데이터 게시글 수정하기
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(QueryCollect.UPDATE_POST);
+			pstmt.setString(1, pDTO.getTitle());
+			pstmt.setString(2, pDTO.getSummary());
+			pstmt.setInt(3, pDTO.getCategorycode());
+			pstmt.setString(4, pDTO.getMainimg());
+			for (int i = 0; i < 11; i++) {
+				// 컨텐츠 내용이 존재할 시에는 정보 넣고 아니면 null값 넣기
+				if (pDTO.getContent()[i] != null) {
+					pstmt.setString(i + 5, pDTO.getContent()[i]);
+				} else {
+					pstmt.setString(i + 5, null);
+				}
+				if (i == 10) {// index가 11일때 밑에 img코드는 생략
+					break;
+				}
+				// 사진 내용이 존재할 시에는 정보 넣고 아니면 null값 넣기
+				if (pDTO.getProduceImg()[i] != null) {
+					pstmt.setString(i + 16, pDTO.getProduceImg()[i]);
+				} else {
+					pstmt.setString(i + 16, null);
+				}
+			}
+			pstmt.setInt(26, pDTO.getPno());
+			pstmt.executeUpdate();
+			// 입력한 후에 바로 입력한 카테고리 코드 확인해서 가져오기
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt);
+		}
 
 	}
-
+	//해당 글 삭제
 	@Override
-	public void deletePost(PostDTO pDTO) {
-		// TODO Auto-generated method stub
-
+	public void deletePost(int pno) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(QueryCollect.DELETE_POST);
+			pstmt.setInt(1, pno);
+			// 삭제 실행
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt);
+		}
 	}
 	//카테고리로 해당 글번호 조회하기
 	@Override
 	public int selectInsertingPost(int categorycode) {
 		int pno = 0;
-		String sql = "select pno from post where categorycode=?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			conn = DBManager.getConnection();
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(QueryCollect.SELECT_INSERTING_POST);
 			pstmt.setInt(1, categorycode);
 			rs = pstmt.executeQuery();
 			if (rs.next()) { // 받아온 자료가 있을 시

@@ -14,6 +14,7 @@ public class CategoryServiceImpl implements CategoryService {
 	//Repo instance 생성
 	CategoryRepository categoryRepository = CategoryRepositoryImpl.getInstance();
 
+	//카테고리 세부내용 받아오기
 	@Override
 	public CategoryDTO selectCategory(int categorycode) {
 		CategoryDTO cDto;	//결과값 보낼 DTO생성
@@ -29,10 +30,11 @@ public class CategoryServiceImpl implements CategoryService {
 		int categorycode = choiceCategoryCode();
 		return categorycode;
 	}
-
+	//기존 카테고리 내용 수정하기.
 	@Override
 	public void updateCategory(CategoryDTO cDTO) {
-		// TODO Auto-generated method stub
+		//받아온 정보로 내용 수정하기.
+		categoryRepository.updateCategory(cDTO);
 	}
 
 	@Override
@@ -40,9 +42,9 @@ public class CategoryServiceImpl implements CategoryService {
 		// TODO Auto-generated method stub
 	}
 
+	//방금 등록했던 카테고리 받아오기
 	@Override
 	public int choiceCategoryCode() {
-		//방금 등록했던 카테고리 받아오기
 		int categorycode = categoryRepository.choiceCategoryCode();
 		return categorycode;
 	}
