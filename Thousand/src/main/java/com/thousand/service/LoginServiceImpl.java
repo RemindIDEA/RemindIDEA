@@ -1,6 +1,7 @@
 package com.thousand.service;
 
 import com.thousand.dto.MemberDTO;
+import com.thousand.enums.LoginResult;
 import com.thousand.repository.LoginRepository;
 import com.thousand.repository.LoginRepositoryImpl;
 
@@ -22,9 +23,9 @@ public class LoginServiceImpl implements LoginService {
 	}
 	//회원정보 가져오기
 	@Override
-	public int selectMember(String id, String pw) {
+	public LoginResult validateMember(String id, String pw) {
 		//받은 아이디 비번으로 회원정보 맞는지 확인하기.
-		return loginRepo.selectMember(id, pw);
+		return loginRepo.validateMember(id, pw);
 	}
 	//회원정보 변경
 	@Override

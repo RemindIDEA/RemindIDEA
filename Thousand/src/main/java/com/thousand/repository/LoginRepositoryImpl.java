@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 
 import com.thousand.consts.QueryCollect;
 import com.thousand.dto.MemberDTO;
+import com.thousand.enums.LoginResult;
 
 import util.DBManager;
 
@@ -40,8 +41,29 @@ public class LoginRepositoryImpl implements LoginRepository{
 	}
 
 	@Override
+<<<<<<< Updated upstream
 	public int selectMember(String id, String pw) {
 		Integer result = null; // result 기본값 -1
+=======
+	public void deleteMember(String id) {
+		Connection conn=null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(QueryCollect.DELETE_MEMBER);
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt);
+		}
+	}
+	//로그인 회원 확인
+	@Override
+	public LoginResult validateMember(String id, String pw) {
+		LoginResult result = null; // result 기본값 -1
+>>>>>>> Stashed changes
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -58,16 +80,14 @@ public class LoginRepositoryImpl implements LoginRepository{
 			if (rs.next()) {
 				// 비밀번호 값이 null이 아니다 그리고 입력한 pw워드가 맞다면
 				if (rs.getString("pw") != null && rs.getString("pw").equals(pw)) {
-					result = 1;
+					result = LoginResult.SUCCESS;
 					// 비밀번호가 틀리면
-				} else { result = 0; }
+				} else { result = LoginResult.PASSWORD_INCORRECT; }
 				// id가 존재하지 않으면
-			} else { result = -1;}
+			} else { result = LoginResult.USER_NOT_FOUND;}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			DBManager.close(conn, pstmt, rs);
-		}
+		} finally { DBManager.close(conn, pstmt, rs); }
 		// 1:pw일치, 0:pw불일치, -1:id없음
 		return result;
 	}

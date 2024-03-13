@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.thousand.enums.LoginResult;
 import com.thousand.service.LoginService;
 import com.thousand.service.LoginServiceImpl;
 
@@ -41,17 +42,17 @@ public class LoginServlet extends HttpServlet {
 		//service instance
 		LoginService loginService = LoginServiceImpl.getInstance();
 		//로그인 실패유무에 따라 페이지 이동
-		int result=loginService.selectMember(id, pw);
-		if(result==1) { //id, pw가 일치할 때
+		LoginResult result=loginService.validateMember(id, pw);
+		if(result==LoginResult.SUCCESS) { //id, pw가 일치할 때
 			//session 등록
 			HttpSession session=request.getSession(); 
 			session.setAttribute("loginUser", id);
 			
 			RequestDispatcher dispatcher=request.getRequestDispatcher("main.do");
 			dispatcher.forward(request, response);
-		}else if(result==0) { // pw가 일치하지 않을때
+		}else if(result==LoginResult.PASSWORD_INCORRECT) { // pw가 일치하지 않을때
 			request.setAttribute("message", "비밀번호를 확인해주세요.");
-		}else if(result==-1) { // id가 존재하지 않을 때
+		}else if(result==LoginResult.USER_NOT_FOUND) { // id가 존재하지 않을 때
 			request.setAttribute("message", "회원가입이 필요합니다.");
 		}
 		RequestDispatcher dispatcher=request.getRequestDispatcher("mypage/login.jsp");
