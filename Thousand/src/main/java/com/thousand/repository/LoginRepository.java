@@ -1,6 +1,7 @@
 package com.thousand.repository;
 
 import com.thousand.dto.MemberDTO;
+import com.thousand.enums.LoginResult;
 
 public interface LoginRepository {
 	// 회원 가입
@@ -10,7 +11,13 @@ public interface LoginRepository {
 	// 회원 정보 수정
 	public int updateMember(MemberDTO mDTO);
 	// 회원 탈퇴
+<<<<<<< Updated upstream
 	public void deleteMember(MemberDTO mDTO);
+=======
+	public void deleteMember(String id);
+	// 로그인 회원정보 확인
+	public LoginResult validateMember(String id, String pw);
+>>>>>>> Stashed changes
 	// id 중복 체크
 	public int confirmId(String id);
 	// nickname 중복 체크

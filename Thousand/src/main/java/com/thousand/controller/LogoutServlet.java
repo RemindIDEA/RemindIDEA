@@ -25,8 +25,9 @@ public class LogoutServlet extends HttpServlet {
 			RequestDispatcher dispatcher=request.getRequestDispatcher("index.do");
 			dispatcher.forward(request, response);
 		}else {
+			//session초기화해서 로그아웃하고 로그인 페이지로 이동시키기
 			session.invalidate(); //session비활성화 => session attribute 소멸
-			RequestDispatcher dispatcher=request.getRequestDispatcher("index.do");
+			RequestDispatcher dispatcher=request.getRequestDispatcher("login.do");
 			dispatcher.forward(request, response);
 		}
 	}
