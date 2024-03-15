@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.thousand.dao.ThousandDAO;
+import com.thousand.service.LoginService;
+import com.thousand.service.LoginServiceImpl;
 
 @WebServlet("/deleteInform.do")
 public class DeleteInformServlet extends HttpServlet {
@@ -30,11 +31,9 @@ public class DeleteInformServlet extends HttpServlet {
 			//아이디 받아오기
 			String id = request.getParameter("id");
 			//아이디로 글 긁어와서 전부 삭제하기
-			ThousandDAO tDao = ThousandDAO.getInstance();
-			tDao.deletePost(id);
-			
-			//아이디 삭제하기
-			tDao.deleteMember(id);
+			LoginService loginService = LoginServiceImpl.getInstance();
+			//회원정보 삭제
+			loginService.deleteMember(id);
 			session.invalidate(); //session비활성화 => session attribute 소멸
 			
 			RequestDispatcher dispatcher=request.getRequestDispatcher("index.do");
