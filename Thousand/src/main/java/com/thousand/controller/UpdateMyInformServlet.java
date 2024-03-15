@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.thousand.dao.ThousandDAO;
 import com.thousand.dto.MemberDTO;
+import com.thousand.service.LoginService;
+import com.thousand.service.LoginServiceImpl;
 
 @WebServlet("/updateMyInform.do")
 public class UpdateMyInformServlet extends HttpServlet {
@@ -30,19 +31,15 @@ public class UpdateMyInformServlet extends HttpServlet {
 		}
 		String id = (String)session.getAttribute("loginUser");
 		if(id.equals((String)session.getAttribute("loginUser"))) {
-			ThousandDAO tDao=ThousandDAO.getInstance();
-			MemberDTO mDto = new MemberDTO();
-			mDto = tDao.getMember(id);
-			request.setAttribute("member", mDto);
+			//회원정보 가져와서 수정할 창으로 정보 전달
+			LoginService loginService = LoginServiceImpl.getInstance();
+			request.setAttribute("member", loginService.getMember(id));
 			RequestDispatcher dispatcher=request.getRequestDispatcher("mypage/updateInform.jsp");
 			dispatcher.forward(request, response);
 		}else {
 			RequestDispatcher dispatcher=request.getRequestDispatcher("main.do");
 			dispatcher.forward(request, response);
 		}
-		
-		
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -56,8 +53,10 @@ public class UpdateMyInformServlet extends HttpServlet {
 		mDto.setPw(pw);
 		mDto.setEmail(email);
 		mDto.setNickname(nickname);
-		ThousandDAO mDao=ThousandDAO.getInstance();
-		mDao.updateMember(mDto);
+		//수정 정보 저장하기
+		LoginService loginService = LoginServiceImpl.getInstance();
+		loginService.updateMember(mDto);
+		
 		RequestDispatcher dispatcher=request.getRequestDispatcher("main.do");
 		dispatcher.forward(request, response);
 	}

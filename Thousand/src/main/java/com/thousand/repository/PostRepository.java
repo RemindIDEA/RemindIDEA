@@ -26,6 +26,8 @@ public interface PostRepository {
 	public void updatePost(PostDTO pDTO);
 	// 글 삭제
 	public void deletePost(int pno);
+	// 글삭제(회원 삭제용)
+	public void deletePost(String id);
 	// 카테고리로 해당 글번호 조회하기
 	public int selectInsertingPost(int categorycode);
 }

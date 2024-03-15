@@ -1,0 +1,111 @@
+[33mcommit b9790e20d09570316a1702ad563d203fb0077518[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mDay6[m[33m, [m[1;31morigin/Day6[m[33m)[m
+Author: hsk <tkdrl319@naver.com>
+Date:   Tue Mar 12 15:03:28 2024 +0900
+
+    Feat:updatemyinform, deleteinform  (servlet, service, repository)
+
+[33mcommit 8c65d4312d0d2a5e5ea28b512a2528ebe16a1b6f[m
+Author: hsk <tkdrl319@naver.com>
+Date:   Mon Mar 11 14:37:02 2024 +0900
+
+    Feat: Login,Logout,loginForm, IdCheck, NicknameCheck (servlet, service, repository)
+
+[33mcommit 68c119e38197a4a8ec069323a347c53025ed6c90[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Merge: 478dfae 5f1fca9
+Author: SangGI <151593484+RemindIDEA@users.noreply.github.com>
+Date:   Mon Mar 11 10:23:39 2024 +0900
+
+    Merge pull request #7 from RemindIDEA/Day4
+    
+    Feat : UpdatePosting(servlet, service, repository)/수정완료 comment2, com…
+
+[33mcommit 5f1fca9bda58dfbbf33341bd02f4c7629e240e14[m[33m ([m[1;31morigin/Day4[m[33m, [m[1;32mDay4[m[33m)[m
+Author: hsk <tkdrl319@naver.com>
+Date:   Wed Mar 6 13:50:09 2024 +0900
+
+    Feat : PostDelete(servlet, service, repository
+
+[33mcommit deaf0323bf4029fbe7081cf76cfaca550c1af68b[m
+Author: hsk <tkdrl319@naver.com>
+Date:   Wed Mar 6 13:48:07 2024 +0900
+
+    stash exercise/fix : Posting,UpdatePosting, CategoryRepository,PostRepository
+
+[33mcommit 2d1de9c7e3170abb918ad1ee76e7a0f1e5fc4165[m
+Author: hsk <tkdrl319@naver.com>
+Date:   Tue Mar 5 17:37:54 2024 +0900
+
+    Feat : UpdatePosting(servlet, service, repository)/수정완료 comment2, comment5, comment6, comment9
+
+[33mcommit 478dfaed7bab51325890d3c54c63ec6985e1f7d6[m
+Merge: 7718752 21d4a84
+Author: SangGI <151593484+RemindIDEA@users.noreply.github.com>
+Date:   Tue Mar 5 10:13:41 2024 +0900
+
+    Merge pull request #6 from RemindIDEA/Day3
+    
+    Feat: Main , Index , ViewPost, Posting, MyPost(servlet, service, repo…
+
+[33mcommit 21d4a84296dbb6e4a4af51dad6307f621051963d[m[33m ([m[1;31morigin/Day3[m[33m, [m[1;32mDay3[m[33m)[m
+Author: hsk <tkdrl319@naver.com>
+Date:   Thu Feb 29 17:09:57 2024 +0900
+
+    Feat: Main , Index , ViewPost, Posting, MyPost(servlet, service, repository)
+
+[33mcommit 77187523156d1bf4e5d96151777d9e135e7da8cc[m
+Author: hsk <tkdrl319@naver.com>
+Date:   Wed Feb 28 18:12:31 2024 +0900
+
+    Rename
+
+[33mcommit d952e3dab81f3a46adadb0cdfeacec777030d269[m
+Author: hsk <tkdrl319@naver.com>
+Date:   Wed Feb 28 18:10:23 2024 +0900
+
+    Rename/Feat: main , index , viewPost(servlet, service, repository)
+
+[33mcommit 58c13234cb59a2845155e7af32ea6ee067e8fead[m
+Merge: 8d6d1ba 30bc498
+Author: SangGI <151593484+RemindIDEA@users.noreply.github.com>
+Date:   Wed Feb 28 15:01:22 2024 +0900
+
+    Merge pull request #1 from RemindIDEA/Day1
+    
+    Day1
+
+[33mcommit 30bc49862421135439a652992f5fbf9122b21d04[m
+Author: cyh <cyh@amass.co.kr>
+Date:   Wed Feb 28 14:56:16 2024 +0900
+
+    add git ignore and remove class files
+
+[33mcommit 7beaae3efc6cb9c2e6622f9a779bd869751b3feb[m[33m ([m[1;31morigin/Day1[m[33m, [m[1;32mDay1[m[33m)[m
+Author: hsk <tkdrl319@naver.com>
+Date:   Tue Feb 27 18:06:13 2024 +0900
+
+    Feat: add repository, service for mvc
+
+[33mcommit 8d6d1ba56be54d084f021e9b3a3ac517c6da87a6[m
+Merge: 5d43ab3 87df03f
+Author: hsk <tkdrl319@naver.com>
+Date:   Mon Feb 26 16:33:38 2024 +0900
+
+    이전 프로젝트 올리기
+
+[33mcommit 87df03fcbe7d93df2fa3862f2a758d0f023fcfde[m
+Author: SangGI <151593484+RemindIDEA@users.noreply.github.com>
+Date:   Mon Feb 26 16:18:15 2024 +0900
+
+    Update README.md
+
+[33mcommit 5d43ab3b90dbeb055bba79dba95383f21aea201c[m
+Author: hsk <tkdrl319@naver.com>
+Date:   Mon Feb 26 14:20:30 2024 +0900
+
+    이전 프로젝트 커밋
+
+[33mcommit 0bced20227091d33f62fba8694b0c7d01600afd8[m
+Author: SangGI <151593484+RemindIDEA@users.noreply.github.com>
+Date:   Mon Feb 26 10:18:11 2024 +0900
+
+    Initial commit
