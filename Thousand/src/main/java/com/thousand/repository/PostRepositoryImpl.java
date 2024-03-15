@@ -14,8 +14,6 @@ import util.DBManager;
 
 public class PostRepositoryImpl implements PostRepository{
 	
-	
-	
 	private PostRepositoryImpl() {}
 	private static PostRepositoryImpl instance = new PostRepositoryImpl();
 	public static PostRepositoryImpl getInstance() {
@@ -336,6 +334,23 @@ public class PostRepositoryImpl implements PostRepository{
 			conn = DBManager.getConnection();
 			pstmt = conn.prepareStatement(QueryCollect.DELETE_POST);
 			pstmt.setInt(1, pno);
+			// 삭제 실행
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt);
+		}
+	}
+	//회원 삭제전 회원이 작성한 글 삭제
+	@Override
+	public void deletePost(String id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(QueryCollect.DELETE_POST_ID);
+			pstmt.setString(1, id);
 			// 삭제 실행
 			pstmt.executeUpdate();
 		} catch (Exception e) {

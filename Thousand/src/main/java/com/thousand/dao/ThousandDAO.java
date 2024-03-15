@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.thousand.consts.QueryCollect;
 import com.thousand.dto.CategoryDTO;
 import com.thousand.dto.LikepostDTO;
 import com.thousand.dto.MemberDTO;
@@ -536,34 +537,16 @@ public class ThousandDAO {
 			DBManager.close(conn, pstmt);
 		}
 	}
-	// 회원 탈퇴
-	public void deleteMember(String id) {
-		String sql = "delete from member where id = ?";      //db에서 id를 기준으로 삭제 할 member테이블 데이터 찾기
-		//이것만 지우고 나머지 likepost, post 테이블의 데이터는 해당 db에 테이블 - 제약조건 - 삭제시 종속삭제 설정하면 삭제 됨
-		Connection conn=null;
-		PreparedStatement pstmt = null;
-		try {
-			conn = DBManager.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBManager.close(conn, pstmt);
-		}
-	}
 
 	// id 중복 체크
 	public int confirmId(String id) {
-		int result = -1;
-		String sql = "select id from member where id=?";
+		Integer result = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			conn = DBManager.getConnection();
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(QueryCollect.CONFIRM_ID);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			if (rs.next()) { // id가 있는 경우
@@ -574,19 +557,7 @@ public class ThousandDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (pstmt != null) {
-					pstmt.close();
-				}
-				if (conn != null) {
-					conn.close();
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			DBManager.close(conn, pstmt, rs);
 		}
 		return result;
 	}
