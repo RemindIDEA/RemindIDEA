@@ -27,4 +27,6 @@ public interface PostService {
 	public void updatePost(int pno, PostDTO pDTO);
 	// 글 삭제
 	public void deletePost(int pno);
+	// 회원정보 전 회원이 작성한 글 삭제
+	public void deletePost(String id);
 }

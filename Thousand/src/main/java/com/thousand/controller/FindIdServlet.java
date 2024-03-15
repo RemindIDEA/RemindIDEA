@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.thousand.dao.ThousandDAO;
+import com.thousand.service.LoginService;
+import com.thousand.service.LoginServiceImpl;
 
 @WebServlet("/findId.do")
 public class FindIdServlet extends HttpServlet {
@@ -35,11 +36,10 @@ public class FindIdServlet extends HttpServlet {
 		// 값 받기
 		String nickname=request.getParameter("nickname");
 		//
-		ThousandDAO tDao=ThousandDAO.getInstance();
-		String id=tDao.searchId(nickname);
+		LoginService loginService = LoginServiceImpl.getInstance();
 
-		if(id !=null) {
-			request.setAttribute("message", "일치하는 아이디는 "+ id +"입니다.");
+		if(loginService.searchId(nickname) !=null) {
+			request.setAttribute("message", "일치하는 아이디는 "+ loginService.searchId(nickname) +"입니다.");
 			// ID를 찾았을 경우 로그인 페이지로 이동
 			RequestDispatcher dispatcher=request.getRequestDispatcher("mypage/login.jsp");
 			dispatcher.forward(request, response);

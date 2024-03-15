@@ -172,4 +172,9 @@ public class PostServiceImpl implements PostService {
 		//받은 글번호로 해당 글 삭제
 		postRepo.deletePost(pno);
 	}
+	//회원탈퇴 전 해당 글 전부 삭제
+	@Override
+	public void deletePost(String id) {
+		postRepo.deletePost(id);
+	}
 }

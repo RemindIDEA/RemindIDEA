@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.thousand.dao.ThousandDAO;
+import com.thousand.enums.SearchCheckResult;
+import com.thousand.service.LoginService;
+import com.thousand.service.LoginServiceImpl;
 
 @WebServlet("/checkMyPw.do")
 public class CheckMyPwServlet extends HttpServlet {
@@ -37,9 +39,10 @@ public class CheckMyPwServlet extends HttpServlet {
 		HttpSession session=request.getSession();
 		String id = (String)session.getAttribute("loginUser");
 		String pw = request.getParameter("pw");
-		ThousandDAO tDao=ThousandDAO.getInstance();
-		int result= tDao.checkPw(id,pw);
-		if(result == 1){     // 비밀번호 일치시 mypage/updateinform.jsp페이지로 이동
+		
+		LoginService loginService = LoginServiceImpl.getInstance();
+		SearchCheckResult result= loginService.checkPw(id,pw);
+		if(result == SearchCheckResult.SUCCESS){     // 비밀번호 일치시 mypage/updateinform.jsp페이지로 이동
 			request.setAttribute("id", id);
 			request.setAttribute("pw", pw);
 			response.sendRedirect("updateMyInform.do");
